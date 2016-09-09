@@ -19,15 +19,15 @@ AS
          p.altitude,
          p.verticlerate,
          p.speed
-  FROM   kdfw_adsb.adsb_positions p
-         JOIN kdfw_adsb.adsb_flights f
+  FROM   adsb_positions p
+         JOIN adsb_flights f
            ON f.id = p.flight
-         JOIN kdfw_adsb.adsb_aircraft adsba
+         JOIN adsb_aircraft adsba
            ON adsba.id = f.aircraft
-         LEFT JOIN adsb.faa_master faam
+         LEFT JOIN faa_master faam
                 ON faam.mode_s_code_hex = adsba.icao
-         LEFT JOIN adsb.faa_ac_type act
+         LEFT JOIN faa_ac_type act
                 ON act.`code` = faam.mfr_mdl_code
-         LEFT JOIN adsb.faa_engines eng
+         LEFT JOIN faa_engines eng
                 ON eng.code = faam.eng_mfr_mdl
-  ORDER  BY p.time 
+  ORDER  BY p.time
